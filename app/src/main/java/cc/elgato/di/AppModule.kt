@@ -8,7 +8,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import javax.inject.Named
 import javax.inject.Singleton
+
+typealias Hello = String
+typealias World = String
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -22,7 +26,22 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideDummyRepo(api: DummyAPI): DummyRepo {
-        return DummyRepoImpl(api)
+    @Named("Hello")
+    fun provideHello(): Hello {
+        return "Hello"
     }
+
+    @Provides
+    @Singleton
+    @Named("World")
+    fun provideWorld(): World {
+        return "Earth" +
+                ""
+    }
+
+//    @Provides
+//    @Singleton
+//    fun provideDummyRepo(api: DummyAPI, @Named("Hello") hello: Hello, @Named("World")  world: World): DummyRepo {
+//        return DummyRepoImpl(api, hello, world)
+//    }
 }

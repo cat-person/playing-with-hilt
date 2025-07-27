@@ -1,5 +1,5 @@
 package cc.elgato.domain
 
 interface DummyRepo {
-    suspend fun get()
+    suspend fun get(): String
 }
